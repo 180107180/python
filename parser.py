@@ -1,6 +1,7 @@
 import requests as rq
 import csv
 from bs4 import BeautifulSoup
+import os
 
 URL = 'https://shop.kz/smartfony/filter/nur_sultan-is-v_nalichii-or-ojidaem-or-dostavim/apply/'
 HEADERS = {'user-agent': 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Mobile Safari/537.36','accept':'*/*'}
@@ -35,10 +36,10 @@ def get_page_count(html):
     pageCount = soup.find('div','bx-pagination-container row').find_all('li')
 
     return int(pageCount[-2].findChild().get_text())
-
+#Сохранение данных в csv файле
 def save_file(items, path):
     with open(path, 'w',newline='') as file:
-        writer = csv.writer(file, delimiter=';')
+        writer = csv.writer(file, delimiter=',')
         writer.writerow(['Model','Link','Action'])
 
         for item in items:
@@ -58,4 +59,6 @@ def parse():
 
     print(phones)
     print(len(phones))
+def start_file
 parse()
+
