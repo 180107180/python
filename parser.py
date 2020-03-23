@@ -17,6 +17,7 @@ def get_content(html):
     phones =  []
     for item in items:
         phone_action = item.find_all('div',class_='bx-catalog-middle-part')
+        prices = item.find_all('span',class_='bx-more-price-text')
         if phone_action:
             phone_action = ''
         else:
@@ -25,7 +26,8 @@ def get_content(html):
         phones.append({
             'model': item.find('div',class_='bx_catalog_item_title').findChild().get_text(),
             'link' : SITE + item.find('div',class_='bx_catalog_item_title').findChild().get('href'),
-            'action': phone_action
+            'action': phone_action,
+            'price' : prices[0].get_text()
         }) 
     return phones
 def get_page_count(html):
@@ -47,6 +49,7 @@ def parse():
     if(html.status_code == 200):
         pages_count = get_page_count(html.text)
         for page in range(1,pages_count + 1):
+            print
             html = get_html(URL,params={'PAGES_1' : page})
             phones.extend(get_content(html.text))
         save_file(phones,FILE)
