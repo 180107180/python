@@ -43,14 +43,14 @@ def get_page_count(html):
     return int(pageCount[-2].findChild().get_text())
 #Сохранение данных в csv файле
 def save_file(items, path):
-    with open(path, 'w',newline='') as file:
+    with open(path, 'w',newline='',encoding='utf-8') as file:
         writer = csv.writer(file, delimiter=',')
         #Инициирование первой строки определяющей названия стоблцов
-        writer.writerow(['Model','Link','Action'])
+        writer.writerow(['Model','Link','Price'])
         #Проходим по каждому блоку и 
         for item in items:
             #Проходим по списку со словарями и также записываем в новую строку
-            writer.writerow([item['model'],item['link'],item['action']])
+            writer.writerow([item['model'],item['link'],item['price']])
 #Главная функция осуществляющая парсинг
 def parse():
     #Получаем html
