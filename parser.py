@@ -6,7 +6,7 @@ https://www.youtube.com/watch?v=J5sqWAqDPyE
 import requests as rq
 import csv
 from bs4 import BeautifulSoup
-
+#Константы
 URL = 'https://shop.kz/smartfony/filter/nur_sultan-is-v_nalichii-or-ojidaem-or-dostavim/apply/'
 HEADERS = {'user-agent': 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Mobile Safari/537.36','accept':'*/*'}
 SITE = 'https://shop.kz'
@@ -30,7 +30,6 @@ def get_content(html):
         phones.append({
             'model': item.find('div',class_='bx_catalog_item_title').findChild().get_text(),
             'link' : SITE + item.find('div',class_='bx_catalog_item_title').findChild().get('href'),
-            'action': phone_action,
             'price' : prices[0].get_text()
         }) 
     return phones
