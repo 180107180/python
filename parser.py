@@ -6,7 +6,11 @@ https://www.youtube.com/watch?v=J5sqWAqDPyE
 import requests as rq
 import csv
 from bs4 import BeautifulSoup
+<<<<<<< HEAD
 #Константы
+=======
+
+>>>>>>> parent of 59de586... .
 URL = 'https://shop.kz/smartfony/filter/nur_sultan-is-v_nalichii-or-ojidaem-or-dostavim/apply/'
 HEADERS = {'user-agent': 'Mozilla/5.0 (Linux; Android 5.0; SM-G900P Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Mobile Safari/537.36','accept':'*/*'}
 SITE = 'https://shop.kz'
@@ -41,13 +45,20 @@ def get_page_count(html):
     pageCount = soup.find('div','bx-pagination-container row').find_all('li')
     #Возвращаем предпоследний элемент кнопки,содержащий количество страниц в данной категории
     return int(pageCount[-2].findChild().get_text())
-#Сохранение данных в csv файле
+
 def save_file(items, path):
+<<<<<<< HEAD
     with open(path, 'w',newline='',encoding='utf-8') as file:
         writer = csv.writer(file, delimiter=',')
         #Инициирование первой строки определяющей названия стоблцов
         writer.writerow(['Model','Link','Price'])
         #Проходим по каждому блоку и 
+=======
+    with open(path, 'w',newline='') as file:
+        writer = csv.writer(file, delimiter=';')
+        writer.writerow(['Model','Link','Action'])
+
+>>>>>>> parent of 59de586... .
         for item in items:
             #Проходим по списку со словарями и также записываем в новую строку
             writer.writerow([item['model'],item['link'],item['price']])
@@ -71,6 +82,8 @@ def parse():
         Вывод списков
     print(phones)
     print(len(phones))
+<<<<<<< HEAD
     """
+=======
+>>>>>>> parent of 59de586... .
 parse()
-
